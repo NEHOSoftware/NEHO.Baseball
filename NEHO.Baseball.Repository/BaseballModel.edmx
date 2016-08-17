@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BaseballModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Batter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MLBAM_ID" Type="int" Nullable="false" />
+          <Property Name="AtBats" Type="int" />
+          <Property Name="Runs" Type="int" />
+          <Property Name="Hits" Type="int" />
+          <Property Name="RBI" Type="int" />
+          <Property Name="Singles" Type="int" />
+          <Property Name="Doubles" Type="int" />
+          <Property Name="Triples" Type="int" />
+          <Property Name="Homeruns" Type="int" />
+          <Property Name="Walks" Type="int" />
+          <Property Name="Strikeouts" Type="int" />
+          <Property Name="HitByPitch" Type="int" />
+          <Property Name="StolenBases" Type="int" />
+          <Property Name="CaughtStealing" Type="int" />
+          <Property Name="Errors" Type="int" />
+        </EntityType>
+        <EntityType Name="Pitcher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MLBAM_ID" Type="int" Nullable="false" />
+          <Property Name="Games" Type="int" />
+          <Property Name="GamesStarted" Type="int" />
+          <Property Name="Wins" Type="int" />
+          <Property Name="Losses" Type="int" />
+          <Property Name="Saves" Type="int" />
+          <Property Name="InningsPitched" Type="float" />
+          <Property Name="Hits" Type="int" />
+          <Property Name="HomerunsAllowed" Type="int" />
+          <Property Name="Walks" Type="int" />
+          <Property Name="Strikeouts" Type="int" />
+          <Property Name="HitBatters" Type="int" />
+          <Property Name="Runs" Type="int" />
+          <Property Name="EarnedRuns" Type="int" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MLBAM_ID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BaseballModelStoreContainer">
+          <EntitySet Name="Batter" EntityType="Self.Batter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pitcher" EntityType="Self.Pitcher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BaseballModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Batter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MLBAM_ID" Type="Int32" Nullable="false" />
+          <Property Name="AtBats" Type="Int32" />
+          <Property Name="Runs" Type="Int32" />
+          <Property Name="Hits" Type="Int32" />
+          <Property Name="RBI" Type="Int32" />
+          <Property Name="Singles" Type="Int32" />
+          <Property Name="Doubles" Type="Int32" />
+          <Property Name="Triples" Type="Int32" />
+          <Property Name="Homeruns" Type="Int32" />
+          <Property Name="Walks" Type="Int32" />
+          <Property Name="Strikeouts" Type="Int32" />
+          <Property Name="HitByPitch" Type="Int32" />
+          <Property Name="StolenBases" Type="Int32" />
+          <Property Name="CaughtStealing" Type="Int32" />
+          <Property Name="Errors" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Pitcher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MLBAM_ID" Type="Int32" Nullable="false" />
+          <Property Name="Games" Type="Int32" />
+          <Property Name="GamesStarted" Type="Int32" />
+          <Property Name="Wins" Type="Int32" />
+          <Property Name="Losses" Type="Int32" />
+          <Property Name="Saves" Type="Int32" />
+          <Property Name="InningsPitched" Type="Double" />
+          <Property Name="Hits" Type="Int32" />
+          <Property Name="HomerunsAllowed" Type="Int32" />
+          <Property Name="Walks" Type="Int32" />
+          <Property Name="Strikeouts" Type="Int32" />
+          <Property Name="HitBatters" Type="Int32" />
+          <Property Name="Runs" Type="Int32" />
+          <Property Name="EarnedRuns" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MLBAM_ID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BaseballEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Batters" EntityType="Self.Batter" />
+          <EntitySet Name="Pitchers" EntityType="Self.Pitcher" />
+          <EntitySet Name="Players" EntityType="Self.Player" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BaseballModelStoreContainer" CdmEntityContainer="BaseballEntities">
+          <EntitySetMapping Name="Batters">
+            <EntityTypeMapping TypeName="BaseballModel.Batter">
+              <MappingFragment StoreEntitySet="Batter">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MLBAM_ID" ColumnName="MLBAM_ID" />
+                <ScalarProperty Name="AtBats" ColumnName="AtBats" />
+                <ScalarProperty Name="Runs" ColumnName="Runs" />
+                <ScalarProperty Name="Hits" ColumnName="Hits" />
+                <ScalarProperty Name="RBI" ColumnName="RBI" />
+                <ScalarProperty Name="Singles" ColumnName="Singles" />
+                <ScalarProperty Name="Doubles" ColumnName="Doubles" />
+                <ScalarProperty Name="Triples" ColumnName="Triples" />
+                <ScalarProperty Name="Homeruns" ColumnName="Homeruns" />
+                <ScalarProperty Name="Walks" ColumnName="Walks" />
+                <ScalarProperty Name="Strikeouts" ColumnName="Strikeouts" />
+                <ScalarProperty Name="HitByPitch" ColumnName="HitByPitch" />
+                <ScalarProperty Name="StolenBases" ColumnName="StolenBases" />
+                <ScalarProperty Name="CaughtStealing" ColumnName="CaughtStealing" />
+                <ScalarProperty Name="Errors" ColumnName="Errors" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pitchers">
+            <EntityTypeMapping TypeName="BaseballModel.Pitcher">
+              <MappingFragment StoreEntitySet="Pitcher">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MLBAM_ID" ColumnName="MLBAM_ID" />
+                <ScalarProperty Name="Games" ColumnName="Games" />
+                <ScalarProperty Name="GamesStarted" ColumnName="GamesStarted" />
+                <ScalarProperty Name="Wins" ColumnName="Wins" />
+                <ScalarProperty Name="Losses" ColumnName="Losses" />
+                <ScalarProperty Name="Saves" ColumnName="Saves" />
+                <ScalarProperty Name="InningsPitched" ColumnName="InningsPitched" />
+                <ScalarProperty Name="Hits" ColumnName="Hits" />
+                <ScalarProperty Name="HomerunsAllowed" ColumnName="HomerunsAllowed" />
+                <ScalarProperty Name="Walks" ColumnName="Walks" />
+                <ScalarProperty Name="Strikeouts" ColumnName="Strikeouts" />
+                <ScalarProperty Name="HitBatters" ColumnName="HitBatters" />
+                <ScalarProperty Name="Runs" ColumnName="Runs" />
+                <ScalarProperty Name="EarnedRuns" ColumnName="EarnedRuns" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="BaseballModel.Player">
+              <MappingFragment StoreEntitySet="Player">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MLBAM_ID" ColumnName="MLBAM_ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

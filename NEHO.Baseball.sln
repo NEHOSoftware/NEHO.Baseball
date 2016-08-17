@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEHO.Baseball.API", "NEHO.B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEHO.Baseball.API.Tests", "NEHO.Baseball.API.Tests\NEHO.Baseball.API.Tests.csproj", "{7E69F3D4-BAEB-4E13-A31F-83C6B722DF93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEHO.Baseball.DTO", "NEHO.Baseball.DTO\NEHO.Baseball.DTO.csproj", "{3213C34E-EF5A-4D94-8E76-B3D8AA40FFCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEHO.Baseball.Repository", "NEHO.Baseball.Repository\NEHO.Baseball.Repository.csproj", "{00A37977-D1B7-491F-A6EF-16E254FB7D11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{7E69F3D4-BAEB-4E13-A31F-83C6B722DF93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E69F3D4-BAEB-4E13-A31F-83C6B722DF93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E69F3D4-BAEB-4E13-A31F-83C6B722DF93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3213C34E-EF5A-4D94-8E76-B3D8AA40FFCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3213C34E-EF5A-4D94-8E76-B3D8AA40FFCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3213C34E-EF5A-4D94-8E76-B3D8AA40FFCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3213C34E-EF5A-4D94-8E76-B3D8AA40FFCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00A37977-D1B7-491F-A6EF-16E254FB7D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00A37977-D1B7-491F-A6EF-16E254FB7D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00A37977-D1B7-491F-A6EF-16E254FB7D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00A37977-D1B7-491F-A6EF-16E254FB7D11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
