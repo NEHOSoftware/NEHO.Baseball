@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Http;
-
+using Marvin.JsonPatch;
 using NEHO.Baseball.Repository;
 using NEHO.Baseball.Repository.Factories;
 
@@ -75,6 +75,75 @@ namespace NEHO.Baseball.API.Controllers
                     var newPlayer = _playerFactory.CreatePlayer(result.Entity);
 
                     return Created(Request.RequestUri + "/" + newPlayer.MLBAM_ID.ToString(), newPlayer);
+                }
+
+                return BadRequest();
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+        }
+
+        public IHttpActionResult Put([FromBody] DTO.Player player)
+        {
+            try
+            {
+                if (player == null)
+                {
+                    return BadRequest();
+                }
+
+                var createdPlayer = _playerFactory.CreatePlayer(player);
+                var result = _playerRepository.UpdatePlayer(createdPlayer);
+
+                if (result.Status == RepositoryActionStatus.Updated)
+                {
+                    var updatedPlayer = _playerFactory.CreatePlayer(result.Entity);
+
+                    return Created(Request.RequestUri + "/" + updatedPlayer.MLBAM_ID.ToString(), updatedPlayer);
+                }
+
+                return BadRequest();
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+        }
+
+        [HttpPatch]
+        public IHttpActionResult Patch(int mlbamid,
+            [FromBody]JsonPatchDocument<DTO.Player> playerPatchDocument)
+        {
+            try
+            {
+                if (playerPatchDocument == null)
+                {
+                    return BadRequest();
+                }
+
+                var player = _playerRepository.GetPlayer(mlbamid);
+                if (player == null)
+                {
+                    return NotFound();
+                }
+
+                // map
+                var createPlayer = _playerFactory.CreatePlayer(player);
+
+                // apply changes to the DTO
+                playerPatchDocument.ApplyTo(createPlayer);
+
+                // map the DTO with applied changes to the entity, & update
+                var result = _playerRepository.UpdatePlayer(_playerFactory.CreatePlayer(createPlayer));
+
+                if (result.Status == RepositoryActionStatus.Updated)
+                {
+                    // map to dto
+                    var patchedPlayer = _playerFactory.CreatePlayer(result.Entity);
+
+                    return Ok(patchedPlayer);
                 }
 
                 return BadRequest();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 
 namespace NEHO.Baseball.Repository
@@ -46,6 +47,47 @@ namespace NEHO.Baseball.Repository
                 {
                     return new RepositoryActionResult<Player>(player, RepositoryActionStatus.NothingModified, null);
                 }
+            }
+            catch (Exception ex)
+            {
+                return new RepositoryActionResult<Player>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
+
+        public RepositoryActionResult<Player> UpdatePlayer(Player player)
+        {
+            try
+            {
+                var existingPlayer = _baseballEntities.Players.FirstOrDefault(p => p.MLBAM_ID == player.MLBAM_ID);
+
+                if (existingPlayer == null)
+                {
+                    return new RepositoryActionResult<Player>(player, RepositoryActionStatus.NotFound);
+                }
+
+                // change the original entity status to detached; otherwise, we get an error on attach
+                // as the entity is already in the dbSet
+
+                // set original entity state to detached
+                _baseballEntities.Entry(existingPlayer).State = EntityState.Detached;
+
+                // attach & save
+                _baseballEntities.Players.Attach(player);
+
+                // set the updated entity state to modified, so it gets updated.
+                _baseballEntities.Entry(player).State = EntityState.Modified;
+
+
+                var result = _baseballEntities.SaveChanges();
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<Player>(player, RepositoryActionStatus.Updated);
+                }
+                else
+                {
+                    return new RepositoryActionResult<Player>(player, RepositoryActionStatus.NothingModified, null);
+                }
+
             }
             catch (Exception ex)
             {

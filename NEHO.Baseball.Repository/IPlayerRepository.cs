@@ -7,5 +7,6 @@ namespace NEHO.Baseball.Repository
         IQueryable<Player> GetPlayers();
         Player GetPlayer(int mlbamid);
         RepositoryActionResult<Player> InsertPlayer(Player player);
+        RepositoryActionResult<Player> UpdatePlayer(Player player);
     }
 }
