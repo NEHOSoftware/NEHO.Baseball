@@ -16,7 +16,7 @@
         {
             return new DTO.Player()
             {
-                ID = player.ID,
+                //ID = player.ID,
                 MLBAM_ID = player.MLBAM_ID,
                 FirstName = player.FirstName,
                 LastName = player.LastName

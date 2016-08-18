@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Web.Http;
 using Marvin.JsonPatch;
 using NEHO.Baseball.Repository;
@@ -36,11 +37,11 @@ namespace NEHO.Baseball.API.Controllers
             }
         }
 
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get(int MLBAM_ID)
         {
             try
             {
-                var player = _playerRepository.GetPlayer(id);
+                var player = _playerRepository.GetPlayer(MLBAM_ID);
 
                 if (player == null)
                 {
@@ -112,38 +113,60 @@ namespace NEHO.Baseball.API.Controllers
             }
         }
 
-        [HttpPatch]
-        public IHttpActionResult Patch(int mlbamid,
-            [FromBody]JsonPatchDocument<DTO.Player> playerPatchDocument)
+        //[HttpPatch]
+        //public IHttpActionResult Patch(int MLBAM_ID,
+        //    [FromBody]JsonPatchDocument<DTO.Player> playerPatchDocument)
+        //{
+        //    try
+        //    {
+        //        if (playerPatchDocument == null)
+        //        {
+        //            return BadRequest();
+        //        }
+
+        //        var player = _playerRepository.GetPlayer(MLBAM_ID);
+        //        if (player == null)
+        //        {
+        //            return NotFound();
+        //        }
+
+        //        // map
+        //        var createPlayer = _playerFactory.CreatePlayer(player);
+
+        //        // apply changes to the DTO
+        //        playerPatchDocument.ApplyTo(createPlayer);
+
+        //        // map the DTO with applied changes to the entity, & update
+        //        var result = _playerRepository.UpdatePlayer(_playerFactory.CreatePlayer(createPlayer));
+
+        //        if (result.Status == RepositoryActionStatus.Updated)
+        //        {
+        //            // map to dto
+        //            var patchedPlayer = _playerFactory.CreatePlayer(result.Entity);
+
+        //            return Ok(patchedPlayer);
+        //        }
+
+        //        return BadRequest();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return InternalServerError();
+        //    }
+        //}
+
+        public IHttpActionResult Delete(int MLBAM_ID)
         {
             try
             {
-                if (playerPatchDocument == null)
+                var result = _playerRepository.DeletePlayer(MLBAM_ID);
+
+                switch (result.Status)
                 {
-                    return BadRequest();
-                }
-
-                var player = _playerRepository.GetPlayer(mlbamid);
-                if (player == null)
-                {
-                    return NotFound();
-                }
-
-                // map
-                var createPlayer = _playerFactory.CreatePlayer(player);
-
-                // apply changes to the DTO
-                playerPatchDocument.ApplyTo(createPlayer);
-
-                // map the DTO with applied changes to the entity, & update
-                var result = _playerRepository.UpdatePlayer(_playerFactory.CreatePlayer(createPlayer));
-
-                if (result.Status == RepositoryActionStatus.Updated)
-                {
-                    // map to dto
-                    var patchedPlayer = _playerFactory.CreatePlayer(result.Entity);
-
-                    return Ok(patchedPlayer);
+                    case RepositoryActionStatus.Deleted:
+                        return StatusCode(HttpStatusCode.NoContent);
+                    case RepositoryActionStatus.NotFound:
+                        return NotFound();
                 }
 
                 return BadRequest();

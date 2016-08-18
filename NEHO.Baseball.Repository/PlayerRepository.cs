@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace NEHO.Baseball.Repository
 {
@@ -65,29 +67,42 @@ namespace NEHO.Baseball.Repository
                     return new RepositoryActionResult<Player>(player, RepositoryActionStatus.NotFound);
                 }
 
-                // change the original entity status to detached; otherwise, we get an error on attach
-                // as the entity is already in the dbSet
+                existingPlayer.FirstName = player.FirstName;
+                existingPlayer.LastName = player.LastName;
 
-                // set original entity state to detached
-                _baseballEntities.Entry(existingPlayer).State = EntityState.Detached;
-
-                // attach & save
-                _baseballEntities.Players.Attach(player);
-
-                // set the updated entity state to modified, so it gets updated.
-                _baseballEntities.Entry(player).State = EntityState.Modified;
-
+                _baseballEntities.Players.AddOrUpdate(existingPlayer);
 
                 var result = _baseballEntities.SaveChanges();
                 if (result > 0)
                 {
                     return new RepositoryActionResult<Player>(player, RepositoryActionStatus.Updated);
                 }
-                else
-                {
-                    return new RepositoryActionResult<Player>(player, RepositoryActionStatus.NothingModified, null);
-                }
 
+                return new RepositoryActionResult<Player>(player, RepositoryActionStatus.NothingModified, null);
+            }
+            catch (Exception ex)
+            {
+                return new RepositoryActionResult<Player>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
+
+        public RepositoryActionResult<Player> DeletePlayer(int id)
+        {
+            try
+            {
+
+                var player = _baseballEntities.Players.FirstOrDefault(p => p.MLBAM_ID == id);
+                if (player != null)
+                {
+                    // also remove all expenses linked to this expensegroup
+
+                    _baseballEntities.Players.Remove(player);
+
+                    _baseballEntities.SaveChanges();
+
+                    return new RepositoryActionResult<Player>(null, RepositoryActionStatus.Deleted);
+                }
+                return new RepositoryActionResult<Player>(null, RepositoryActionStatus.NotFound);
             }
             catch (Exception ex)
             {

@@ -8,5 +8,6 @@ namespace NEHO.Baseball.Repository
         Player GetPlayer(int mlbamid);
         RepositoryActionResult<Player> InsertPlayer(Player player);
         RepositoryActionResult<Player> UpdatePlayer(Player player);
+        RepositoryActionResult<Player> DeletePlayer(int mlbamid);
     }
 }
