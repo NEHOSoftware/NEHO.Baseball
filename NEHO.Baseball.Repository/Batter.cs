@@ -16,19 +16,19 @@ namespace NEHO.Baseball.Repository
     {
         public int ID { get; set; }
         public int MLBAM_ID { get; set; }
-        public Nullable<int> AtBats { get; set; }
-        public Nullable<int> Runs { get; set; }
-        public Nullable<int> Hits { get; set; }
-        public Nullable<int> RBI { get; set; }
-        public Nullable<int> Singles { get; set; }
-        public Nullable<int> Doubles { get; set; }
-        public Nullable<int> Triples { get; set; }
-        public Nullable<int> Homeruns { get; set; }
-        public Nullable<int> Walks { get; set; }
-        public Nullable<int> Strikeouts { get; set; }
-        public Nullable<int> HitByPitch { get; set; }
-        public Nullable<int> StolenBases { get; set; }
-        public Nullable<int> CaughtStealing { get; set; }
-        public Nullable<int> Errors { get; set; }
+        public int AtBats { get; set; }
+        public int Runs { get; set; }
+        public int Hits { get; set; }
+        public int RBI { get; set; }
+        public int Singles { get; set; }
+        public int Doubles { get; set; }
+        public int Triples { get; set; }
+        public int Homeruns { get; set; }
+        public int Walks { get; set; }
+        public int Strikeouts { get; set; }
+        public int HitByPitch { get; set; }
+        public int StolenBases { get; set; }
+        public int CaughtStealing { get; set; }
+        public int Errors { get; set; }
     }
 }

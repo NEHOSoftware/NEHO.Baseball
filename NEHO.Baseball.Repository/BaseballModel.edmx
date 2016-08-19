@@ -4,27 +4,27 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BaseballModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BaseballModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Batter">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MLBAM_ID" Type="int" Nullable="false" />
-          <Property Name="AtBats" Type="int" />
-          <Property Name="Runs" Type="int" />
-          <Property Name="Hits" Type="int" />
-          <Property Name="RBI" Type="int" />
-          <Property Name="Singles" Type="int" />
-          <Property Name="Doubles" Type="int" />
-          <Property Name="Triples" Type="int" />
-          <Property Name="Homeruns" Type="int" />
-          <Property Name="Walks" Type="int" />
-          <Property Name="Strikeouts" Type="int" />
-          <Property Name="HitByPitch" Type="int" />
-          <Property Name="StolenBases" Type="int" />
-          <Property Name="CaughtStealing" Type="int" />
-          <Property Name="Errors" Type="int" />
+          <Property Name="AtBats" Type="int" Nullable="false" />
+          <Property Name="Runs" Type="int" Nullable="false" />
+          <Property Name="Hits" Type="int" Nullable="false" />
+          <Property Name="RBI" Type="int" Nullable="false" />
+          <Property Name="Singles" Type="int" Nullable="false" />
+          <Property Name="Doubles" Type="int" Nullable="false" />
+          <Property Name="Triples" Type="int" Nullable="false" />
+          <Property Name="Homeruns" Type="int" Nullable="false" />
+          <Property Name="Walks" Type="int" Nullable="false" />
+          <Property Name="Strikeouts" Type="int" Nullable="false" />
+          <Property Name="HitByPitch" Type="int" Nullable="false" />
+          <Property Name="StolenBases" Type="int" Nullable="false" />
+          <Property Name="CaughtStealing" Type="int" Nullable="false" />
+          <Property Name="Errors" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Pitcher">
           <Key>
@@ -34,17 +34,17 @@
           <Property Name="MLBAM_ID" Type="int" Nullable="false" />
           <Property Name="Games" Type="int" />
           <Property Name="GamesStarted" Type="int" />
-          <Property Name="Wins" Type="int" />
-          <Property Name="Losses" Type="int" />
-          <Property Name="Saves" Type="int" />
-          <Property Name="InningsPitched" Type="float" />
-          <Property Name="Hits" Type="int" />
-          <Property Name="HomerunsAllowed" Type="int" />
-          <Property Name="Walks" Type="int" />
-          <Property Name="Strikeouts" Type="int" />
-          <Property Name="HitBatters" Type="int" />
-          <Property Name="Runs" Type="int" />
-          <Property Name="EarnedRuns" Type="int" />
+          <Property Name="Wins" Type="int" Nullable="false" />
+          <Property Name="Losses" Type="int" Nullable="false" />
+          <Property Name="Saves" Type="int" Nullable="false" />
+          <Property Name="InningsPitched" Type="float" Nullable="false" />
+          <Property Name="Hits" Type="int" Nullable="false" />
+          <Property Name="HomerunsAllowed" Type="int" Nullable="false" />
+          <Property Name="Walks" Type="int" Nullable="false" />
+          <Property Name="Strikeouts" Type="int" Nullable="false" />
+          <Property Name="HitBatters" Type="int" Nullable="false" />
+          <Property Name="Runs" Type="int" Nullable="false" />
+          <Property Name="EarnedRuns" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Player">
           <Key>
@@ -60,8 +60,7 @@
           <EntitySet Name="Pitcher" EntityType="Self.Pitcher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BaseballModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -71,20 +70,20 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MLBAM_ID" Type="Int32" Nullable="false" />
-          <Property Name="AtBats" Type="Int32" />
-          <Property Name="Runs" Type="Int32" />
-          <Property Name="Hits" Type="Int32" />
-          <Property Name="RBI" Type="Int32" />
-          <Property Name="Singles" Type="Int32" />
-          <Property Name="Doubles" Type="Int32" />
-          <Property Name="Triples" Type="Int32" />
-          <Property Name="Homeruns" Type="Int32" />
-          <Property Name="Walks" Type="Int32" />
-          <Property Name="Strikeouts" Type="Int32" />
-          <Property Name="HitByPitch" Type="Int32" />
-          <Property Name="StolenBases" Type="Int32" />
-          <Property Name="CaughtStealing" Type="Int32" />
-          <Property Name="Errors" Type="Int32" />
+          <Property Name="AtBats" Type="Int32" Nullable="false" />
+          <Property Name="Runs" Type="Int32" Nullable="false" />
+          <Property Name="Hits" Type="Int32" Nullable="false" />
+          <Property Name="RBI" Type="Int32" Nullable="false" />
+          <Property Name="Singles" Type="Int32" Nullable="false" />
+          <Property Name="Doubles" Type="Int32" Nullable="false" />
+          <Property Name="Triples" Type="Int32" Nullable="false" />
+          <Property Name="Homeruns" Type="Int32" Nullable="false" />
+          <Property Name="Walks" Type="Int32" Nullable="false" />
+          <Property Name="Strikeouts" Type="Int32" Nullable="false" />
+          <Property Name="HitByPitch" Type="Int32" Nullable="false" />
+          <Property Name="StolenBases" Type="Int32" Nullable="false" />
+          <Property Name="CaughtStealing" Type="Int32" Nullable="false" />
+          <Property Name="Errors" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Pitcher">
           <Key>
@@ -94,17 +93,17 @@
           <Property Name="MLBAM_ID" Type="Int32" Nullable="false" />
           <Property Name="Games" Type="Int32" />
           <Property Name="GamesStarted" Type="Int32" />
-          <Property Name="Wins" Type="Int32" />
-          <Property Name="Losses" Type="Int32" />
-          <Property Name="Saves" Type="Int32" />
-          <Property Name="InningsPitched" Type="Double" />
-          <Property Name="Hits" Type="Int32" />
-          <Property Name="HomerunsAllowed" Type="Int32" />
-          <Property Name="Walks" Type="Int32" />
-          <Property Name="Strikeouts" Type="Int32" />
-          <Property Name="HitBatters" Type="Int32" />
-          <Property Name="Runs" Type="Int32" />
-          <Property Name="EarnedRuns" Type="Int32" />
+          <Property Name="Wins" Type="Int32" Nullable="false" />
+          <Property Name="Losses" Type="Int32" Nullable="false" />
+          <Property Name="Saves" Type="Int32" Nullable="false" />
+          <Property Name="InningsPitched" Type="Double" Nullable="false" />
+          <Property Name="Hits" Type="Int32" Nullable="false" />
+          <Property Name="HomerunsAllowed" Type="Int32" Nullable="false" />
+          <Property Name="Walks" Type="Int32" Nullable="false" />
+          <Property Name="Strikeouts" Type="Int32" Nullable="false" />
+          <Property Name="HitBatters" Type="Int32" Nullable="false" />
+          <Property Name="Runs" Type="Int32" Nullable="false" />
+          <Property Name="EarnedRuns" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Player">
           <Key>

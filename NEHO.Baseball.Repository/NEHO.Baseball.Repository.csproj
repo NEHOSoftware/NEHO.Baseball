@@ -69,11 +69,17 @@
     <Compile Include="Batter.cs">
       <DependentUpon>BaseballModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BatterRepository.cs" />
+    <Compile Include="Factories\BatterFactory.cs" />
+    <Compile Include="Factories\PitcherFactory.cs" />
     <Compile Include="Factories\PlayerFactory.cs" />
+    <Compile Include="IBatterRepository.cs" />
+    <Compile Include="IPitcherRepository.cs" />
     <Compile Include="IPlayerRepository.cs" />
     <Compile Include="Pitcher.cs">
       <DependentUpon>BaseballModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PitcherRespository.cs" />
     <Compile Include="Player.cs">
       <DependentUpon>BaseballModel.tt</DependentUpon>
     </Compile>
