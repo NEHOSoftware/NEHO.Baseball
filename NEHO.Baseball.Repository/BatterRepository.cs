@@ -58,7 +58,7 @@ namespace NEHO.Baseball.Repository
         {
             try
             {
-                var existingBatter = _baseballEntities.Batters.FirstOrDefault(b => b.MLBAM_ID == batter.MLBAM_ID);
+                var existingBatter = _baseballEntities.Batters.FirstOrDefault(b => b.MLBAM_ID == batter.MLBAM_ID && b.Year == batter.Year);
 
                 if (existingBatter == null)
                 {

@@ -30,5 +30,6 @@ namespace NEHO.Baseball.Repository
         public int StolenBases { get; set; }
         public int CaughtStealing { get; set; }
         public int Errors { get; set; }
+        public Nullable<int> Year { get; set; }
     }
 }

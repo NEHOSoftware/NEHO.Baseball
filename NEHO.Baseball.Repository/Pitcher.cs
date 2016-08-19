@@ -29,5 +29,6 @@ namespace NEHO.Baseball.Repository
         public int HitBatters { get; set; }
         public int Runs { get; set; }
         public int EarnedRuns { get; set; }
+        public Nullable<int> Year { get; set; }
     }
 }

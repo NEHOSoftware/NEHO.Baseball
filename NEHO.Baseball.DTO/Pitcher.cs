@@ -4,6 +4,7 @@
     {
         public int ID { get; set; }
         public int MLBAM_ID { get; set; }
+        public int? Year { get; set; }
         public int? Games { get; set; }
         public int? GamesStarted { get; set; }
         public int Wins { get; set; }

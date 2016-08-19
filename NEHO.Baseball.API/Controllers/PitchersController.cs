@@ -23,7 +23,7 @@ namespace NEHO.Baseball.API.Controllers
             _pitcherRepository = pitcherRepository;
         }
 
-        public IHttpActionResult Get()
+        public IHttpActionResult Get(string sort="id")
         {
             try
             {

@@ -11,6 +11,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MLBAM_ID" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" />
           <Property Name="AtBats" Type="int" Nullable="false" />
           <Property Name="Runs" Type="int" Nullable="false" />
           <Property Name="Hits" Type="int" Nullable="false" />
@@ -32,6 +33,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MLBAM_ID" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" />
           <Property Name="Games" Type="int" />
           <Property Name="GamesStarted" Type="int" />
           <Property Name="Wins" Type="int" Nullable="false" />
@@ -84,6 +86,7 @@
           <Property Name="StolenBases" Type="Int32" Nullable="false" />
           <Property Name="CaughtStealing" Type="Int32" Nullable="false" />
           <Property Name="Errors" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" />
         </EntityType>
         <EntityType Name="Pitcher">
           <Key>
@@ -104,6 +107,7 @@
           <Property Name="HitBatters" Type="Int32" Nullable="false" />
           <Property Name="Runs" Type="Int32" Nullable="false" />
           <Property Name="EarnedRuns" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" />
         </EntityType>
         <EntityType Name="Player">
           <Key>
@@ -128,6 +132,7 @@
           <EntitySetMapping Name="Batters">
             <EntityTypeMapping TypeName="BaseballModel.Batter">
               <MappingFragment StoreEntitySet="Batter">
+                <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MLBAM_ID" ColumnName="MLBAM_ID" />
                 <ScalarProperty Name="AtBats" ColumnName="AtBats" />
@@ -150,6 +155,7 @@
           <EntitySetMapping Name="Pitchers">
             <EntityTypeMapping TypeName="BaseballModel.Pitcher">
               <MappingFragment StoreEntitySet="Pitcher">
+                <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MLBAM_ID" ColumnName="MLBAM_ID" />
                 <ScalarProperty Name="Games" ColumnName="Games" />

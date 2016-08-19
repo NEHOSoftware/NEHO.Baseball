@@ -37,16 +37,15 @@ namespace NEHO.Baseball.Repository
             try
             {
                 _baseballEntities.Pitchers.Add(pitcher);
+
                 var result = _baseballEntities.SaveChanges();
 
                 if (result > 0)
                 {
                     return new RepositoryActionResult<Pitcher>(pitcher, RepositoryActionStatus.Created);
                 }
-                else
-                {
-                    return new RepositoryActionResult<Pitcher>(pitcher, RepositoryActionStatus.NothingModified, null);
-                }
+
+                return new RepositoryActionResult<Pitcher>(pitcher, RepositoryActionStatus.NothingModified, null);
             }
             catch (Exception ex)
             {
@@ -58,7 +57,7 @@ namespace NEHO.Baseball.Repository
         {
             try
             {
-                var existingPitcher = _baseballEntities.Pitchers.FirstOrDefault(p => p.MLBAM_ID == pitcher.MLBAM_ID);
+                var existingPitcher = _baseballEntities.Pitchers.FirstOrDefault(p => p.MLBAM_ID == pitcher.MLBAM_ID && p.Year == pitcher.Year);
 
                 if (existingPitcher == null)
                 {
