@@ -2,12 +2,14 @@
 using System.Linq;
 using System.Net;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 using NEHO.Baseball.Repository;
 using NEHO.Baseball.Repository.Factories;
 
 namespace NEHO.Baseball.API.Controllers
 {
+    [EnableCors("*", "*", "GET,POST,PUT,DELETE")]
     public class BattersController : ApiController
     {
         private readonly IBatterRepository _batterRepository;

@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEHO.Baseball.DTO", "NEHO.B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEHO.Baseball.Repository", "NEHO.Baseball.Repository\NEHO.Baseball.Repository.csproj", "{00A37977-D1B7-491F-A6EF-16E254FB7D11}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEHO.Baseball.WebClient", "NEHO.Baseball.WebClient\NEHO.Baseball.WebClient.csproj", "{6F483DC8-7C28-4F47-9FA6-901D92B9D5B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEHO.Baseball.Constants", "NEHO.Baseball.Constants\NEHO.Baseball.Constants.csproj", "{42421F07-7EB5-469A-AA50-361DFDE321FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{00A37977-D1B7-491F-A6EF-16E254FB7D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00A37977-D1B7-491F-A6EF-16E254FB7D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00A37977-D1B7-491F-A6EF-16E254FB7D11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F483DC8-7C28-4F47-9FA6-901D92B9D5B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F483DC8-7C28-4F47-9FA6-901D92B9D5B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F483DC8-7C28-4F47-9FA6-901D92B9D5B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F483DC8-7C28-4F47-9FA6-901D92B9D5B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42421F07-7EB5-469A-AA50-361DFDE321FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42421F07-7EB5-469A-AA50-361DFDE321FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42421F07-7EB5-469A-AA50-361DFDE321FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42421F07-7EB5-469A-AA50-361DFDE321FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

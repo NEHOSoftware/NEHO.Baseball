@@ -1,0 +1,86 @@
+﻿@model NEHO.Baseball.DTO.Player
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Player Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            MLB ID
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(playerModel => playerModel.MLBAM_ID)
+        </dd>
+
+        <dt>
+            First Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(playerModel => playerModel.FirstName)
+        </dd>
+
+        <dt>
+            Last Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(playerModel => playerModel.LastName)
+        </dd>
+    </dl>
+
+
+    <h4>Registered Players</h4>
+
+    <p>
+        @Html.ActionLink("Add an expense", "Create", "Players", new { mlbamid = Model.MLBAM_ID }, null)
+    </p>
+    @*<table class="table">
+        <tr>
+            <th>
+                Description
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Amount
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var player in Model.Players)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => player.MLBAM_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => player.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => player.LastName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Players", new { expenseGroupId = player.ExpenseGroupId, id = item.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Expenses", new { expenseGroupId = item.ExpenseGroupId, id = item.Id }, null)
+                </td>
+            </tr>
+        }
+
+    </table>*@
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
