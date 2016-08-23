@@ -1,4 +1,5 @@
-﻿@model NEHO.Baseball.WebClient.Models.PlayersViewModel
+﻿@using NEHO.Baseball.DTO
+@model NEHO.Baseball.WebClient.Models.PlayersViewModel
 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css"/>
 
@@ -22,6 +23,12 @@
         <th>
             Last Name
         </th>
+        <th>
+            At Bats
+        </th>
+        <th>
+            Innings Pitched
+        </th>
         <th></th>
     </tr>
 
@@ -36,6 +43,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => player.LastName)
+            </td>
+            <td>
+                @((Model.Batters as List<Batter>).FirstOrDefault(b => b.MLBAM_ID == player.MLBAM_ID).AtBats)
+            </td>
+            <td>
+                @((Model.Pitchers as List<Pitcher>).FirstOrDefault(b => b.MLBAM_ID == player.MLBAM_ID).InningsPitched)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new {id = player.MLBAM_ID}) |
