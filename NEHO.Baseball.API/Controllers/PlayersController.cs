@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
-
+using System.Web.Http.Routing;
+using Newtonsoft.Json;
 using NEHO.Baseball.API.Helpers;
 using NEHO.Baseball.Repository;
 using NEHO.Baseball.Repository.Factories;
@@ -27,18 +29,62 @@ namespace NEHO.Baseball.API.Controllers
             _playerRepository = playerRepository;
         }
 
-        public IHttpActionResult Get(string sort = "mlbam_id", string lastName = null)
+        [Route("api/players", Name = "PlayersList")]
+        public IHttpActionResult Get(string sort = "mlbam_id", string lastName = null, int page = 1, int pageSize = 10)
         {
             try
             {
-                var players = _playerRepository.GetPlayers();
+                var players = _playerRepository.GetPlayers().ApplySort(sort);
 
                 if (lastName != null)
                 {
-                    return Ok(players.ApplySort(sort).Where(p => p.LastName == lastName).ToList().Select(p => _playerFactory.CreatePlayer(p)));
+                    players = players.Where(p => p.LastName == lastName);
                 }
 
-                return Ok(players.ApplySort(sort).ToList().Select(p => _playerFactory.CreatePlayer(p)));
+                if (pageSize > MaxPageSize)
+                {
+                    pageSize = MaxPageSize;
+                }
+
+                var totalPlayers = players.Count();
+                var totalPages = (int) Math.Ceiling((double) totalPlayers/pageSize);
+
+                var urlHelper = new UrlHelper(Request);
+                var previousLink = page > 1
+                    ? urlHelper.Link("PlayersList",
+                        new
+                        {
+                            page = page - 1,
+                            pageSize = pageSize,
+                            sort = sort,
+                            lastName = lastName
+                        })
+                    : "";
+
+                var nextLink = page < totalPages
+                    ? urlHelper.Link("PlayersList",
+                        new
+                        {
+                            page = page + 1,
+                            pageSize = pageSize,
+                            sort = sort,
+                            lastName = lastName
+                        })
+                    : "";
+
+                var paginationHeader = new
+                {
+                    currentPage = page,
+                    pageSize = pageSize,
+                    totalPlayers = totalPlayers,
+                    totalPages = totalPages,
+                    previousPageLink = previousLink,
+                    nextPageLink = nextLink
+                };
+
+                HttpContext.Current.Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(paginationHeader));
+
+                return Ok(players.Skip(pageSize * (page - 1)).Take(pageSize).ToList().Select(p => _playerFactory.CreatePlayer(p)));
             }
             catch (Exception)
             {
