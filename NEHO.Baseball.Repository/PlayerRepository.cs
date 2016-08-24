@@ -26,6 +26,7 @@ namespace NEHO.Baseball.Repository
 
         public IQueryable<Player> GetPlayers()
         {
+
             return _baseballEntities.Players;
         }
 

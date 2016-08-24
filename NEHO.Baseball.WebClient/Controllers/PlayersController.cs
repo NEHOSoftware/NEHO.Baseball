@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -43,6 +46,105 @@ namespace NEHO.Baseball.WebClient.Controllers
             }
 
             return View(playersModel);
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Players/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(Player player)
+        {
+            try
+            {
+                var client = BaseballHttpClient.GetClient();
+
+                var serializedPlayer = JsonConvert.SerializeObject(player);
+
+                var response =
+                    await
+                        client.PostAsync("api/players",
+                            new StringContent(serializedPlayer, Encoding.Unicode, "application/json"));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                return Content("An error ocurred while creating this player.");
+            }
+            catch (Exception)
+            {
+
+                return Content("An error ocurred while creating this player.");
+            }
+        }
+
+        public async Task<ActionResult> Edit(int mlbamid)
+        {
+            var client = BaseballHttpClient.GetClient();
+
+            var httpResponseMessage = await client.GetAsync("api/players/" + mlbamid);
+
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                var content = await httpResponseMessage.Content.ReadAsStringAsync();
+                var playerModel = JsonConvert.DeserializeObject<Player>(content);
+
+                return View(playerModel);
+            }
+
+            return Content("An error ocurred while retrieving this player.");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(int mlbamid, Player player)
+        {
+            try
+            {
+                var client = BaseballHttpClient.GetClient();
+
+                var serializedPlayer = JsonConvert.SerializeObject(player);
+
+                var httpResponseMessage =
+                    await client.PutAsync("api/players/" + mlbamid,
+                        new StringContent(serializedPlayer, Encoding.Unicode, "application/json"));
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                return Content("An error ocurred while editing this player.");
+            }
+            catch
+            {
+                return Content("An error ocurred while editing this player.");
+            }
+        }
+
+        public async Task<ActionResult> Delete(int mlbamid)
+        {
+            try
+            {
+                var client = BaseballHttpClient.GetClient();
+                var httpResponseMessage = await client.DeleteAsync("api/players/" + mlbamid);
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                return Content("An error ocurred while trying to delete this player.");
+            }
+            catch (Exception)
+            {
+                return Content("An error ocurred while trying to delete this player.");
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Net;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
+using NEHO.Baseball.API.Helpers;
 using NEHO.Baseball.Repository;
 using NEHO.Baseball.Repository.Factories;
 
@@ -14,6 +15,7 @@ namespace NEHO.Baseball.API.Controllers
     {
         private readonly IPlayerRepository _playerRepository;
         readonly PlayerFactory _playerFactory = new PlayerFactory();
+        const int MaxPageSize = 20;
 
         public PlayersController()
         {
@@ -25,13 +27,18 @@ namespace NEHO.Baseball.API.Controllers
             _playerRepository = playerRepository;
         }
 
-        public IHttpActionResult Get()
+        public IHttpActionResult Get(string sort = "mlbam_id", string lastName = null)
         {
             try
             {
                 var players = _playerRepository.GetPlayers();
 
-                return Ok(players.ToList().Select(p => _playerFactory.CreatePlayer(p)));
+                if (lastName != null)
+                {
+                    return Ok(players.ApplySort(sort).Where(p => p.LastName == lastName).ToList().Select(p => _playerFactory.CreatePlayer(p)));
+                }
+
+                return Ok(players.ApplySort(sort).ToList().Select(p => _playerFactory.CreatePlayer(p)));
             }
             catch (Exception)
             {

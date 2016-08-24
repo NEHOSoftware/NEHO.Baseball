@@ -44,16 +44,16 @@
             <td>
                 @Html.DisplayFor(modelItem => player.LastName)
             </td>
-            <td>
+            @*<td>
                 @((Model.Batters as List<Batter>).FirstOrDefault(b => b.MLBAM_ID == player.MLBAM_ID).AtBats)
             </td>
             <td>
                 @((Model.Pitchers as List<Pitcher>).FirstOrDefault(b => b.MLBAM_ID == player.MLBAM_ID).InningsPitched)
-            </td>
+            </td>*@
             <td>
-                @Html.ActionLink("Edit", "Edit", new {id = player.MLBAM_ID}) |
-                @Html.ActionLink("Details", "Details", new {id = player.MLBAM_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = player.MLBAM_ID })
+                @Html.ActionLink("Edit", "Edit", new { mlbamid = player.MLBAM_ID }) |
+                @Html.ActionLink("Details", "Details", new { mlbamid = player.MLBAM_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { mlbamid = player.MLBAM_ID })
             </td>
         </tr>
     }
