@@ -7,22 +7,23 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 
 using Newtonsoft.Json;
-
+using NEHO.Baseball.API.Helpers;
 using NEHO.Baseball.DTO;
 using NEHO.Baseball.WebClient.Helpers;
 using NEHO.Baseball.WebClient.Models;
+using PagedList;
 
 namespace NEHO.Baseball.WebClient.Controllers
 {
     public class PlayersController : Controller
     {
         // GET: Players
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? page = 1)
         {
             var httpClient = BaseballHttpClient.GetClient();
             var playersModel = new PlayersViewModel();
 
-            var playersResponseMessage = await httpClient.GetAsync("api/players");
+            var playersResponseMessage = await httpClient.GetAsync("api/players?sort=LastName, FirstName&page=" + page + "&pagesize = 10");
             var battersResponseMessage = await httpClient.GetAsync("api/batters");
             var pitchersResponseMessage = await httpClient.GetAsync("api/pitchers");
 
@@ -32,13 +33,20 @@ namespace NEHO.Baseball.WebClient.Controllers
                 var battersContent = await battersResponseMessage.Content.ReadAsStringAsync();
                 var pitchersContent = await pitchersResponseMessage.Content.ReadAsStringAsync();
 
+                var pagingInfo = HeaderParser.FindAndParsePagingInfo(playersResponseMessage.Headers);
+
                 var players = JsonConvert.DeserializeObject<IEnumerable<Player>>(playersContent);
                 var batters = JsonConvert.DeserializeObject<IEnumerable<Batter>>(battersContent);
                 var pitchers = JsonConvert.DeserializeObject<IEnumerable<Pitcher>>(pitchersContent);
 
-                playersModel.Players = players;
-                playersModel.Batters = batters;
-                playersModel.Pitchers = pitchers;
+                var pagedPlayersList = new StaticPagedList<Player>(players, pagingInfo.CurrentPage, pagingInfo.PageSize, pagingInfo.TotalPlayers);
+                var pagedBattersList = new StaticPagedList<Batter>(batters, pagingInfo.CurrentPage, pagingInfo.PageSize, pagingInfo.TotalPlayers);
+                var pagedPitchersList = new StaticPagedList<Pitcher>(pitchers, pagingInfo.CurrentPage, pagingInfo.PageSize, pagingInfo.TotalPlayers);
+
+                playersModel.Players = pagedPlayersList;
+                playersModel.Batters = pagedBattersList;
+                playersModel.Pitchers = pagedPitchersList;
+                playersModel.PagingInfo = pagingInfo;
             }
             else
             {

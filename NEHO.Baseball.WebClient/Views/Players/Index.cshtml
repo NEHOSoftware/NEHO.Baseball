@@ -1,5 +1,6 @@
-﻿@using NEHO.Baseball.DTO
-@model NEHO.Baseball.WebClient.Models.PlayersViewModel
+﻿@model NEHO.Baseball.WebClient.Models.PlayersViewModel
+@using NEHO.Baseball.DTO
+@using PagedList.Mvc;
 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css"/>
 
@@ -59,3 +60,5 @@
     }
 </table>
 
+@(Model.PagingInfo.CurrentPage) of @Model.PagingInfo.TotalPages
+@Html.PagedListPager(Model.Players, page => Url.Action("Index", new { page }))

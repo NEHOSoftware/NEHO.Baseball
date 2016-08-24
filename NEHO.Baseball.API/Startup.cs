@@ -2,7 +2,7 @@
 
 using Owin;
 
-[assembly: OwinStartup(typeof(NEHO.Baseball.API.Startup))]
+[assembly: OwinStartup("Baseball.API", typeof(NEHO.Baseball.API.Startup))]
 
 namespace NEHO.Baseball.API
 {

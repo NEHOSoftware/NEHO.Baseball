@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
-
+﻿using NEHO.Baseball.API.Helpers;
 using NEHO.Baseball.DTO;
+
+using PagedList;
 
 namespace NEHO.Baseball.WebClient.Models
 {
     public class PlayersViewModel
     {
-        public IEnumerable<Player> Players { get; set; }
-        public IEnumerable<Batter> Batters { get; set; }
-        public IEnumerable<Pitcher> Pitchers { get; set; }
+        public IPagedList<Player> Players { get; set; }
+        public IPagedList<Batter> Batters { get; set; }
+        public IPagedList<Pitcher> Pitchers { get; set; }
+        public PagingInfo PagingInfo { get; set; }
     }
 }
