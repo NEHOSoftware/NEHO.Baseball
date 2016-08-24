@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Headers;
 using System.Web.Http;
-
+using System.Web.Http.Cors;
 using Microsoft.Owin.Security.OAuth;
 
 using Newtonsoft.Json;
@@ -12,6 +12,8 @@ namespace NEHO.Baseball.API
     {
         public static void Register(HttpConfiguration config)
         {
+            EnableCrossSiteRequests(config);
+
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
@@ -32,6 +34,15 @@ namespace NEHO.Baseball.API
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             config.MessageHandlers.Add(new CacheCow.Server.CachingHandler(config));
+        }
+
+        private static void EnableCrossSiteRequests(HttpConfiguration config)
+        {
+            var cors = new EnableCorsAttribute(
+                origins: "*",
+                headers: "*",
+                methods: "*");
+            config.EnableCors(cors);
         }
     }
 }

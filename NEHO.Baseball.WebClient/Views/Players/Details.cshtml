@@ -1,4 +1,4 @@
-﻿@model NEHO.Baseball.DTO.Player
+﻿@model NEHO.Baseball.WebClient.Models.PlayersViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -18,7 +18,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(playerModel => playerModel.MLBAM_ID)
+            @Html.DisplayFor(model => model.Player.MLBAM_ID)
         </dd>
 
         <dt>
@@ -26,7 +26,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(playerModel => playerModel.FirstName)
+            @Html.DisplayFor(model => model.Player.FirstName)
         </dd>
 
         <dt>
@@ -34,7 +34,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(playerModel => playerModel.LastName)
+            @Html.DisplayFor(model => model.Player.LastName)
         </dd>
     </dl>
 
@@ -42,7 +42,7 @@
     <h4>Registered Players</h4>
 
     <p>
-        @Html.ActionLink("Add an expense", "Create", "Players", new { mlbamid = Model.MLBAM_ID }, null)
+        @Html.ActionLink("Add an player", "Create", "Players", new { mlbamid = Model.Player.MLBAM_ID }, null)
     </p>
     @*<table class="table">
         <tr>

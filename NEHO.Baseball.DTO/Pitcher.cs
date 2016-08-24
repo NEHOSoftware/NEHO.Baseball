@@ -1,7 +1,10 @@
-﻿namespace NEHO.Baseball.DTO
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace NEHO.Baseball.DTO
 {
     public class Pitcher
     {
+        [Key]
         public int ID { get; set; }
         public int MLBAM_ID { get; set; }
         public int? Year { get; set; }

@@ -14,7 +14,7 @@ using NEHO.Baseball.Repository.Factories;
 
 namespace NEHO.Baseball.API.Controllers
 {
-    [EnableCors("*", "*", "GET,POST,PUT,DELETE")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PlayersController : ApiController
     {
         private readonly IPlayerRepository _playerRepository;
@@ -88,7 +88,7 @@ namespace NEHO.Baseball.API.Controllers
 
                 return Ok(players.Skip(pageSize * (page - 1)).Take(pageSize).ToList().Select(p => _playerFactory.CreatePlayer(p)));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return InternalServerError();
             }
