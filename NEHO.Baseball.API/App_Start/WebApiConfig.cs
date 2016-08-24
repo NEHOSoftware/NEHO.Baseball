@@ -30,6 +30,8 @@ namespace NEHO.Baseball.API
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json-patch+json"));
             config.Formatters.JsonFormatter.SerializerSettings.Formatting = Formatting.Indented;
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            config.MessageHandlers.Add(new CacheCow.Server.CachingHandler(config));
         }
     }
 }
